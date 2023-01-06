@@ -36,12 +36,24 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername()
-                , user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        return user;
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(x-> new SimpleGrantedAuthority(x.getName())).collect(Collectors.toList());
-    }
+
+////   geekbrains one
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = findByUserName(username);
+//        if (user == null) {
+//            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+//        }
+//        return new org.springframework.security.core.userdetails.User(user.getUsername()
+//                , user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+//    }
+//
+//    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+//        return roles.stream()
+//                .map(x-> new SimpleGrantedAuthority(x.getName())).collect(Collectors.toList());
+//    }
 }
