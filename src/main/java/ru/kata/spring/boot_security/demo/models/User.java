@@ -1,12 +1,9 @@
 package ru.kata.spring.boot_security.demo.models;
 
-
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import ru.kata.spring.boot_security.demo.services.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,13 +12,17 @@ import java.util.Collection;
 @Table(name = "users")
 @Primary
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "age")
     private Integer age;
@@ -35,19 +36,17 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
+
     public User() {
     }
 
-    public User(String username, String password, Collection<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
-
 
     public String getUsername() {
         return username;
@@ -57,12 +56,20 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = (new BCryptPasswordEncoder().encode(password));
     }
 
     public Integer getAge() {
@@ -75,6 +82,10 @@ public class User implements UserDetails {
 
     public Collection<Role> getRoles() {
         return roles;
+    }
+
+    public String showRoles() {
+        return roles.toString().replaceAll("ROLE_", "");
     }
 
     public void setRoles(Collection<Role> roles) {

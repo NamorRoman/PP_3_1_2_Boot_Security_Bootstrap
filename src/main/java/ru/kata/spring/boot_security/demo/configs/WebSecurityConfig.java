@@ -28,35 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.userService = userService;
     }
 
-//    initial
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/", "/index").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().successHandler(successUserHandler)
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/index", "/read").permitAll()
-                .anyRequest().authenticated()
-                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/", "/index").permitAll()
+                .antMatchers("/user").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-//                .anyRequest().authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successUserHandler)
                 .permitAll()
                 .and()
-                .logout()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll();
     }
 
@@ -66,25 +51,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //        UserDetails user = User.builder()
 //                .username("user")
-//                .password("{bcrypt}$2a$12$mJkVp79fQLR8Zay3taXOWeG/38yECbuNEYLEE8RDx/Mj8/BPOxM9q")
+//                .password("user")
 //                .roles("USER")
 //                .build();
 //
 //        UserDetails admin = User.builder()
 //                .username("admin")
-//                .password("{bcrypt}$2a$12$mJkVp79fQLR8Zay3taXOWeG/38yECbuNEYLEE8RDx/Mj8/BPOxM9q")
-//                .roles("ADMIN", "USER")
+//                .password("admin")
+//                .roles("USER", "ADMIN")
 //                .build();
 //
 //        return new InMemoryUserDetailsManager(user, admin);
 //    }
 
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -92,19 +77,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setUserDetailsService(userService);
         return authenticationProvider;
     }
-
-
-
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }

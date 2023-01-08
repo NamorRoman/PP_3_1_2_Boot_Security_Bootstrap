@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add new users info</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/admin/save_new_user}" th:object="${user}">
+<!--<form th:method="POST" th:action="@{/save_new_user}" th:object="${user}">-->
+
+  <label for="username" >Enter the username</label>
+  <input type="text" th:field="*{username}" id="username">
+  <br>
+  <label for="password" >Enter the password</label>
+  <input type="text" th:field="*{password}" id="password">
+  <br>
+  <label for="last_name" >Enter the last name</label>
+  <input type="text" th:field="*{lastName}" id="last_name">
+  <br>
+  <label for="age" >Enter the age</label>
+  <input type="text" th:field="*{age}" id="age">
+  <br>
+
+<!--  <label for="age" >Enter the role</label>-->
+<!--  <input type="text" th:field="*{roles}" id="role">-->
+
+  <label for="roles">Choose the role: <br>
+    "1" for user <br>
+    "2" for admin
+    <br></label>
+  <input type="text" th:field="*{roles}" id="roles">
+
+<!---->
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<!--  -->
+
+  <input type="submit" value="Add user" /> <input type="reset" value="Reset"/>
+
+
+</form>
+
+
+<input type="button" value="Logout"
+       onclick="window.location.href = '/logout'"
+/>
+
+</body>
+</html>
