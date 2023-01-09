@@ -23,11 +23,17 @@
   <br>
 
 
-  <label for="roles">Choose the role: <br>
-    "1" for user <br>
-    "2" for admin
-    <br></label>
-  <input type="text" th:field="*{roles}" id="roles">
+  <label for="User">User</label>
+  <input id="User" type="checkbox" name="User" th:field="*{roles}" th:value="1"/>
+  <label for="Admin">Admin</label>
+  <input id="Admin" type="checkbox" name="Admin" th:field="*{roles}" th:value="2"/>
+  <br>
+
+
+
+
+
+
 
 
 <!---->
@@ -39,10 +45,20 @@
 
 </form>
 
+<input type="button" value="Back"
+       onclick="window.location.href = '/admin'"
+/>
 
+<br>
 <input type="button" value="Logout"
        onclick="window.location.href = '/logout'"
 />
+
+
+
+<!--<input type="button" value="Logout"-->
+<!--       onclick="window.location.href = '/logout'"-->
+<!--/>-->
 
 </body>
 </html>
