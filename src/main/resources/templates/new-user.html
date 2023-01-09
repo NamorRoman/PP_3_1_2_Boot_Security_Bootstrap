@@ -22,14 +22,13 @@
   <input type="text" th:field="*{age}" id="age">
   <br>
 
-<!--  <label for="age" >Enter the role</label>-->
-<!--  <input type="text" th:field="*{roles}" id="role">-->
 
   <label for="roles">Choose the role: <br>
     "1" for user <br>
     "2" for admin
     <br></label>
   <input type="text" th:field="*{roles}" id="roles">
+
 
 <!---->
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
