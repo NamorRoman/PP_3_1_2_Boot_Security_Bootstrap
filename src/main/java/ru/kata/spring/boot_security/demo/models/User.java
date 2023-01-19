@@ -1,10 +1,13 @@
 package ru.kata.spring.boot_security.demo.models;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 
 @Entity
@@ -17,8 +20,9 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username", unique = true)
-    private String username;
+
+    @Column(name = "first_name")
+    private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
@@ -29,6 +33,11 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+
+    @Column(name = "email", unique = true)
+    @Email
+    private String email;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -36,6 +45,14 @@ public class User implements UserDetails {
     private Collection<Role> roles;
 
     public User() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setId(Long id) {
@@ -46,13 +63,20 @@ public class User implements UserDetails {
         return id;
     }
 
+
     public String getUsername() {
-        return username;
+        return this.email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
     public String getLastName() {
         return lastName;
@@ -67,7 +91,7 @@ public class User implements UserDetails {
     }
 
     public void setPassword(String password) {
-        this.password = (new BCryptPasswordEncoder().encode(password));
+        this.password = password;
     }
 
     public Integer getAge() {
@@ -83,7 +107,13 @@ public class User implements UserDetails {
     }
 
     public String showRoles() {
-        return roles.toString().replaceAll("ROLE_", "");
+        StringBuilder sb = new StringBuilder();
+        for (Role r : roles
+        ) {
+            sb.append(r.getName().replaceAll("ROLE_", "")).append(" ");
+        }
+        return sb.toString();
+//        return roles.toString().replaceAll("ROLE_", "");
     }
 
     public void setRoles(Collection<Role> roles) {

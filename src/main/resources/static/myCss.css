@@ -1,0 +1,55 @@
+.form-control{
+    height: 40px;
+   width: 300px;
+}
+#role-selector {
+    height: 60px;
+}
+
+#nav-profile {
+
+    text-align: center;
+}
+
+
+
+
+#above-table-buttons {
+    font-size: small;
+    width:250px;
+}
+
+
+#right-side {
+    background: rgba(222, 234, 232, 0.18);
+
+}
+
+#new-user-button {
+    color: blue;
+    border: none;
+    background: none;
+}
+
+
+#v-pills-tab {
+       width: 500px;
+}
+
+.list-group {
+    background: rgba(222, 234, 232, 0.18);
+    border: none;
+
+}
+
+#edit-button1 {
+    background-color: #6ebad9;
+    border-color: #6ebad9;
+}
+
+.col-10 {
+    /*background: #F8F9F9;*/
+    background: rgba(222, 234, 232, 0.18);
+    /*opacity: .50 ;*/
+}
+

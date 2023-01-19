@@ -7,21 +7,26 @@
 <body>
 
 <form th:method="POST" th:action="@{/admin/save_new_user}" th:object="${user}">
-<!--<form th:method="POST" th:action="@{/save_new_user}" th:object="${user}">-->
 
-  <label for="username" >Enter the username</label>
-  <input type="text" th:field="*{username}" id="username">
+  <label for="first_name">Enter the first name</label>
+  <input type="text" th:field="*{firstName}" id="first_name">
   <br>
-  <label for="password" >Enter the password</label>
-  <input type="text" th:field="*{password}" id="password">
-  <br>
-  <label for="last_name" >Enter the last name</label>
+
+  <label for="last_name">Enter the last name</label>
   <input type="text" th:field="*{lastName}" id="last_name">
   <br>
-  <label for="age" >Enter the age</label>
-  <input type="text" th:field="*{age}" id="age">
+
+  <label for="age">Enter the age</label>
+  <input type="number" th:field="*{age}" id="age">
   <br>
 
+  <label for="email">Enter the email</label>
+  <input type="text" th:field="*{email}" id="email">
+  <br>
+
+  <label for="password">Enter the password</label>
+  <input type="text" th:field="*{password}" id="password">
+  <br>
 
   <label for="User">User</label>
   <input id="User" type="checkbox" name="User" th:field="*{roles}" th:value="1"/>
@@ -29,16 +34,7 @@
   <input id="Admin" type="checkbox" name="Admin" th:field="*{roles}" th:value="2"/>
   <br>
 
-
-
-
-
-
-
-
-<!---->
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-<!--  -->
 
   <input type="submit" value="Add user" /> <input type="reset" value="Reset"/>
 
