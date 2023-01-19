@@ -12,18 +12,18 @@ import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 
 @Controller
-public class MainAppController {
+public class AdminController {
 
     UserServiceImpl userService;
     RoleServiceImpl roleService;
 
     @Autowired
-    public MainAppController(UserServiceImpl userService,RoleServiceImpl roleService) {
+    public AdminController(UserServiceImpl userService, RoleServiceImpl roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
-    @GetMapping("/admin/boot")
+    @GetMapping("/admin")
     public String boots(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
@@ -34,11 +34,6 @@ public class MainAppController {
         return "bootstrap-index";
     }
 
-    @GetMapping("/admin")
-    public String showAllUsers(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "show-all-users";
-    }
 
     @GetMapping("/user")
     public String userPage1(Model model) {
@@ -57,13 +52,13 @@ public class MainAppController {
     @PatchMapping("admin/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.update(user);
-        return "redirect:/admin/boot";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("admin/{id}")
     public String deleteUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.delete(user);
-        return "redirect:/admin/boot";
+        return "redirect:/admin";
     }
 
     @GetMapping("admin/new_user")
@@ -71,11 +66,10 @@ public class MainAppController {
         return "new-user";
     }
 
-
     @PostMapping("/admin/save_new_user")
     public String addUser(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:/admin/boot";
+        return "redirect:/admin";
     }
 
 }
