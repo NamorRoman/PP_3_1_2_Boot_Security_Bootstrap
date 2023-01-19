@@ -113,7 +113,6 @@ public class User implements UserDetails {
             sb.append(r.getName().replaceAll("ROLE_", "")).append(" ");
         }
         return sb.toString();
-//        return roles.toString().replaceAll("ROLE_", "");
     }
 
     public void setRoles(Collection<Role> roles) {

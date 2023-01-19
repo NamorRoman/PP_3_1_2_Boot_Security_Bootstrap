@@ -14,6 +14,10 @@
     <link href="/myCss.css" rel="stylesheet">
 
 
+
+    <link rel="shortcut icon" type="image/png" th:href="@{favicon.png}"/>
+
+
     <title>Bootstrap page</title>
 </head>
 
@@ -144,7 +148,7 @@
                                                                             class="form-control">
                                                                         <option th:selected="${user.getRoles().contains(role)}"
                                                                                 th:each="role : ${roles}"
-                                                                                th:text="${role.getHumanName()}"
+                                                                                th:text="${role.getReadableName()}"
                                                                                 th:value="${role.id}"/>
                                                                     </select>
                                                                 </div>
@@ -223,7 +227,7 @@
                                                                             class="form-control">
                                                                         <option th:selected="${user.getRoles().contains(role)}"
                                                                                 th:each="role : ${roles}"
-                                                                                th:text="${role.getHumanName()}"
+                                                                                th:text="${role.getReadableName()}"
                                                                                 th:value="${role.id}"
                                                                                 disabled
                                                                         />
@@ -301,11 +305,12 @@
 
                 <!--            USER PAGE-->
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <h1>User information page</h1>
 
-                    <h4>All users</h4>
 
                     <table class="table table-borderless">
-                        <thead>
+
+                        <thead> <h5>About user</h5>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">First name</th>

@@ -1,60 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Add new users info</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Add new users info</title>-->
+<!--</head>-->
+<!--<body>-->
 
-<form th:method="POST" th:action="@{/admin/save_new_user}" th:object="${user}">
+<!--<form th:method="POST" th:action="@{/admin/save_new_user}" th:object="${user}">-->
 
-  <label for="first_name">Enter the first name</label>
-  <input type="text" th:field="*{firstName}" id="first_name">
-  <br>
+<!--  <label for="first_name">Enter the first name</label>-->
+<!--  <input type="text" th:field="*{firstName}" id="first_name">-->
+<!--  <br>-->
 
-  <label for="last_name">Enter the last name</label>
-  <input type="text" th:field="*{lastName}" id="last_name">
-  <br>
+<!--  <label for="last_name">Enter the last name</label>-->
+<!--  <input type="text" th:field="*{lastName}" id="last_name">-->
+<!--  <br>-->
 
-  <label for="age">Enter the age</label>
-  <input type="number" th:field="*{age}" id="age">
-  <br>
+<!--  <label for="age">Enter the age</label>-->
+<!--  <input type="number" th:field="*{age}" id="age">-->
+<!--  <br>-->
 
-  <label for="email">Enter the email</label>
-  <input type="text" th:field="*{email}" id="email">
-  <br>
+<!--  <label for="email">Enter the email</label>-->
+<!--  <input type="text" th:field="*{email}" id="email">-->
+<!--  <br>-->
 
-  <label for="password">Enter the password</label>
-  <input type="text" th:field="*{password}" id="password">
-  <br>
+<!--  <label for="password">Enter the password</label>-->
+<!--  <input type="text" th:field="*{password}" id="password">-->
+<!--  <br>-->
 
-  <label for="User">User</label>
-  <input id="User" type="checkbox" name="User" th:field="*{roles}" th:value="1"/>
-  <label for="Admin">Admin</label>
-  <input id="Admin" type="checkbox" name="Admin" th:field="*{roles}" th:value="2"/>
-  <br>
+<!--  <label for="User">User</label>-->
+<!--  <input id="User" type="checkbox" name="User" th:field="*{roles}" th:value="1"/>-->
+<!--  <label for="Admin">Admin</label>-->
+<!--  <input id="Admin" type="checkbox" name="Admin" th:field="*{roles}" th:value="2"/>-->
+<!--  <br>-->
 
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<!--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
 
-  <input type="submit" value="Add user" /> <input type="reset" value="Reset"/>
-
-
-</form>
-
-<input type="button" value="Back"
-       onclick="window.location.href = '/admin'"
-/>
-
-<br>
-<input type="button" value="Logout"
-       onclick="window.location.href = '/logout'"
-/>
+<!--  <input type="submit" value="Add user" /> <input type="reset" value="Reset"/>-->
 
 
+<!--</form>-->
 
+<!--<input type="button" value="Back"-->
+<!--       onclick="window.location.href = '/admin'"-->
+<!--/>-->
+
+<!--<br>-->
 <!--<input type="button" value="Logout"-->
 <!--       onclick="window.location.href = '/logout'"-->
 <!--/>-->
 
-</body>
-</html>
+
+
+<!--&lt;!&ndash;<input type="button" value="Logout"&ndash;&gt;-->
+<!--&lt;!&ndash;       onclick="window.location.href = '/logout'"&ndash;&gt;-->
+<!--&lt;!&ndash;/>&ndash;&gt;-->
+
+<!--</body>-->
+<!--</html>-->

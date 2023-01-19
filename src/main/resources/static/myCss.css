@@ -4,14 +4,9 @@
 
 }
 
-
-
-
 #role-selector {
     height: 60px;
 }
-
-
 
 #right-side {
     background: rgba(222, 234, 232, 0.18);
@@ -31,8 +26,6 @@
 }
 
 .col-10 {
-    /*background: #F8F9F9;*/
     background: rgba(222, 234, 232, 0.18);
-    /*opacity: .50 ;*/
 }
 

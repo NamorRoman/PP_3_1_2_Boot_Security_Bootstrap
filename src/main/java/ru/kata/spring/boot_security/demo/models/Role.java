@@ -46,7 +46,7 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
-    public String getHumanName() {
+    public String getReadableName() {
         return getName().replaceAll("ROLE_", "");
     }
 }
