@@ -13,8 +13,8 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 @Controller
 public class UserController {
 
-    UserService userService;
-    RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {

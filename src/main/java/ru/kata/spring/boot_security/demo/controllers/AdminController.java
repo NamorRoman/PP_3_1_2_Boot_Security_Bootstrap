@@ -14,8 +14,8 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 @Controller
 public class AdminController {
 
-    UserService userService;
-    RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
@@ -24,13 +24,13 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public String boots(Model model) {
+    public String adminPage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         model.addAttribute("principal", user);
         model.addAttribute("user", new User());
         model.addAttribute("users", userService.findAll());
-        model.addAttribute("roles",roleService.findAll());
+        model.addAttribute("roles", roleService.findAll());
         return "bootstrap-admin";
     }
 

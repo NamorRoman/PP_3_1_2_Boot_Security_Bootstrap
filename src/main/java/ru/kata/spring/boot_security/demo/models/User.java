@@ -1,11 +1,8 @@
 package ru.kata.spring.boot_security.demo.models;
 
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
@@ -106,6 +103,8 @@ public class User implements UserDetails {
         return roles;
     }
 
+
+    //for html view header
     public String showRoles() {
         StringBuilder sb = new StringBuilder();
         for (Role r : roles

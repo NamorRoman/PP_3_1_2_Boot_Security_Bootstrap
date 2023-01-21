@@ -11,11 +11,12 @@ public class Role implements GrantedAuthority {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name", unique = true)
     private String name;
 
     public Role() {
     }
+
     public Role(String name) {
         this.name = name;
     }
